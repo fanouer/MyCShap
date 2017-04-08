@@ -1,0 +1,111 @@
+﻿<Window x:Class="ModifyMD5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ModifyMD5" Height="413" Width="700" Foreground="{x:Null}" Icon="icon.ico" Background="#FF2DF0F0">
+    <DockPanel>
+        <TabControl Background="White" Margin="0,0,0,5" Opacity="1">
+            <TabItem Header="压缩修改xml">
+                <Grid Margin="0,3">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF2DF0F0" Offset="0.098"/>
+                            <GradientStop Color="#FFD9CDF9" Offset="1"/>
+                            <GradientStop Color="#FFF3F3F3" Offset="0.335"/>
+                            <GradientStop Color="#CC1BDEA0" Offset="0.677"/>
+                            <GradientStop Color="#EE87DBF3" Offset="0.887"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Label Content="选择压缩的文件夹：" Height="30" Margin="10,50,550,0" VerticalAlignment="Top"/>
+                    <Label Content="B比对A修改A：" Height="30" Margin="0,150,550,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="95"/>
+                    <Label Content="B：" HorizontalAlignment="Right" Height="30" Margin="0,175,550,0" VerticalAlignment="Top" Width="30"/>
+                    <Label Content="A：" HorizontalAlignment="Right" Height="30" Margin="0,225,550,0" VerticalAlignment="Top" Width="30"/>
+                    <ComboBox x:Name="openOne" HorizontalAlignment="Left" Margin="160,50,0,0" VerticalAlignment="Top" Width="373" IsEditable="True" />
+                    <Button Content="打开.." HorizontalAlignment="Left" Margin="200,100,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Opacity="0.6"/>
+                    <Button Content="压缩" HorizontalAlignment="Right" Margin="0,100,240,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" Opacity="0.6"/>
+                    <Button Content="修改" HorizontalAlignment="Left" Margin="200,280,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2" Opacity="0.6"/>
+                    <Button Content="打开文件.." HorizontalAlignment="Left" Margin="550,192,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3" Opacity="0.6"/>
+                    <Button Content="打开文件.." HorizontalAlignment="Left" Margin="550,225,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_4" Opacity="0.6" BorderThickness="1"/>
+                    <ComboBox x:Name="openB" HorizontalAlignment="Left" Margin="160,175,0,0" VerticalAlignment="Top" Width="373" IsEditable="True"/>
+                    <ComboBox x:Name="openA" HorizontalAlignment="Left" Margin="160,225,0,0" VerticalAlignment="Top" Width="373" IsEditable="True"/>
+                    <Button Content="打开目录.." HorizontalAlignment="Left" Margin="550,158,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.133,-0.136" Opacity="0.6" Click="Button_Click_5"/>
+                    <Button Content="打开A目录" HorizontalAlignment="Left" Margin="411,280,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_9" Opacity="0.6"/>
+                    <Button Content="解压缩" HorizontalAlignment="Left" Margin="550,100,0,0" VerticalAlignment="Top" Width="75" Opacity="0.6" Click="Button_Click_10"/>
+
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="生成config">
+                <Grid x:Name="grid" Margin="0,3">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF2DF0F0" Offset="0.098"/>
+                            <GradientStop Color="#FFD9CDF9" Offset="1"/>
+                            <GradientStop Color="#FFF3F3F3" Offset="0.335"/>
+                            <GradientStop Color="#CC1BDEA0" Offset="0.677"/>
+                            <GradientStop Color="#EE87DBF3" Offset="0.887"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Label Content="分辨率：" HorizontalAlignment="Left" Margin="30,25,0,0" VerticalAlignment="Top" Width="79" FontSize="18"/>
+                    <ComboBox x:Name="screen" HorizontalAlignment="Left" Margin="120,25,0,0" VerticalAlignment="Top" Width="137" FontSize="18" ItemsSource="{Binding screens}" SelectionChanged="screen_SelectionChanged"/>
+                    <CheckBox x:Name="window" Content="开启窗口模式" HorizontalAlignment="Left" Margin="120,75,0,0" VerticalAlignment="Top" FontSize="20" />
+                    <CheckBox x:Name="vertsync" Content="开启垂直同步" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="20"/>
+                    <CheckBox x:Name="weather" Content="开启天气预报" HorizontalAlignment="Left" Margin="120,175,0,0" VerticalAlignment="Top" FontSize="20"/>
+                    <CheckBox x:Name="sound" Content="音效" HorizontalAlignment="Left" Margin="350,25,0,0" VerticalAlignment="Top" FontSize="20"/>
+                    <CheckBox x:Name="scenesound" Content="场景音效" HorizontalAlignment="Left" Margin="350,75,0,0" VerticalAlignment="Top" FontSize="20"/>
+                    <CheckBox x:Name="circumstancesound" Content="环境音效" HorizontalAlignment="Left" Margin="350,125,0,0" VerticalAlignment="Top" FontSize="20"/>
+                    <CheckBox x:Name="backgroundsound" Content="背景音乐" HorizontalAlignment="Left" Margin="350,175,0,0" VerticalAlignment="Top" FontSize="20"/>
+                    <Button Content="生成加密" HorizontalAlignment="Left" Margin="350,308,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_6" Opacity="0.6"/>
+                    <Button Content="解密" HorizontalAlignment="Left" Margin="470,308,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_8" Opacity="0.6"/>
+                    <Slider x:Name="silder1" Minimum="0" Maximum="100" Margin="518,25,78,251" ValueChanged="silder1_ValueChanged" SmallChange="1" LargeChange="10"/>
+                    <TextBlock FontSize="15" FontFamily="Comic Sans MS" Text="0" Margin="631,25,10,267" x:Name="textSlider1" RenderTransformOrigin="1.524,-0.2"/>
+                    <Slider x:Name="silder2" Minimum="0" Maximum="100" Margin="518,75,78,201" ValueChanged="silder2_ValueChanged" SmallChange="1" LargeChange="10"/>
+                    <TextBlock FontSize="15" FontFamily="Comic Sans MS" Text="0" Margin="631,75,10,217" x:Name="textSlider2" RenderTransformOrigin="1.524,-0.2"/>
+                    <Slider x:Name="silder3" Minimum="0" Maximum="100" Margin="518,125,78,151" ValueChanged="silder3_ValueChanged" SmallChange="1" LargeChange="10"/>
+                    <TextBlock FontSize="15" FontFamily="Comic Sans MS" Text="0" Margin="631,125,10,167" x:Name="textSlider3" RenderTransformOrigin="1.524,-0.2"/>
+                    <Slider x:Name="silder4" Minimum="0" Maximum="100" Margin="518,175,78,101" ValueChanged="silder4_ValueChanged" SmallChange="1" LargeChange="10"/>
+                    <TextBlock FontSize="15" FontFamily="Comic Sans MS" Text="0" Margin="631,175,10,117" x:Name="textSlider4" RenderTransformOrigin="1.524,-0.2"/>
+                    <Label Content="服务器ip：" HorizontalAlignment="Left" Margin="30,215,0,0" VerticalAlignment="Top" Width="90" FontSize="18" Height="33"/>
+                    <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="33" Margin="120,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" FontSize="20" TextChanged="textBox1_TextChanged"/>
+                    <Label Content="服务器端口：" HorizontalAlignment="Left" Margin="350,217,0,0" VerticalAlignment="Top" Width="110" FontSize="18" Height="33"/>
+                    <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="33" Margin="465,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="207" FontSize="20"/>
+                    <Label Content="服务器名字：" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" Width="110" FontSize="18" Height="33"/>
+                    <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="33" Margin="120,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" FontSize="20"/>
+                    <Label Content="资源下载地址：" HorizontalAlignment="Left" Margin="331,262,0,0" VerticalAlignment="Top" Width="129" FontSize="18" Height="33"/>
+                    <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="33" Margin="465,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="207" FontSize="14"/>
+                    <Button Content="打开路径" HorizontalAlignment="Left" Margin="590,308,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_7" Opacity="0.6"/>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="使用说明">
+                <Grid Margin="0,3">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF2DF0F0" Offset="0.098"/>
+                            <GradientStop Color="#FFD9CDF9" Offset="1"/>
+                            <GradientStop Color="#FFF3F3F3" Offset="0.335"/>
+                            <GradientStop Color="#CC1BDEA0" Offset="0.677"/>
+                            <GradientStop Color="#EE87DBF3" Offset="0.887"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Label MaxWidth="600" Margin="-1,0,1,6" >
+                        <Label.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF2DF0F0" Offset="0.098"/>
+                                <GradientStop Color="#FFD9CDF9" Offset="1"/>
+                                <GradientStop Color="#FFF3F3F3" Offset="0.335"/>
+                                <GradientStop Color="#CC1BDEA0" Offset="0.677"/>
+                                <GradientStop Color="#EE87DBF3" Offset="0.887"/>
+                            </LinearGradientBrush>
+                        </Label.Background>
+                        <TextBlock TextWrapping="Wrap"  HorizontalAlignment="Left" Height="297" VerticalAlignment="Top" Width="594" Foreground="#FF5F12AC" FontFamily="Comic Sans MS" Background="{x:Null}" FontSize="18" LineHeight="9" ><Run Text="软件说明：&#xA;1. 压缩 用于压缩某个文件夹下的每一个文件为.7z压缩文件，并生成一个记录原始文件名和原始MD5值的一个xml文件再次点击后会覆盖之前的xml和7z文件.&#xA;2. 修改 用于比较两个文件的MD5值并修改或者追加原始文件固定节点属性和值，并在源文件同目录生成一个源文件存档和更改报告存档文件夹，一个为源文件的存档，另一个为对源文件操作的报告，该文件是追加写文件"/><Run Language="zh-cn" Text="."/><LineBreak/><Run Language="zh-cn" Text="3. 加密解密 在软件的根目录生成一个加密文件config.txt，解密config.txt在根目录生成一个Kconfig.txt，可打开软件根目录查看."/><Run Text="&#xA;"/></TextBlock>
+                    </Label>
+
+                </Grid>
+            </TabItem>
+
+
+        </TabControl>
+    </DockPanel>
+
+</Window>
